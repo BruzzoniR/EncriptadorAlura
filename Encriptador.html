@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Encriptador de texto</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1><img src="./pics/Logo.svg" alt="Logo de Alura" id="logo"></h1>
+    </header>
+    <main>
+        <section id="sectorTextoOriginal">
+            <form>
+                <textarea id="texto" placeholder="Ingrese el texto aquí" required></textarea>
+                <p id="advertencia"><i class="fa-solid fa-circle-exclamation"></i> Sólo letras minúsculas y sin acentos</p>
+                <div id="sectorBotones">
+                    <input type="button" id="botonEncriptar" value="Encriptar" class="botones">
+                    <input type="button" id="botonDesencriptar" value="Desencriptar" class="botones">
+                </div>
+            </form>
+        </section>
+
+        <section id="sectorTextoTrasformado">
+            <textarea id="textoTransformado"></textarea>
+            
+            <div id="textoConImagen">
+                <img src="./pics/Muñeco.svg" alt="Dibujo de alguien buscando" id="imagen">
+                <p id="textoMediano">Ningún mensaje fue encontrado</p>
+                <p id="textoChico">Ingresa el texto que quieres encriptar o desencriptar.</p>
+            </div>
+
+            <input type="button" id="botonCopiar" value="Copiar" class="botones">
+
+        </section>
+
+    </main>
+    <footer>
+        <p>Copyright 2022 <i class="fa-regular fa-copyright"></i> Roberto Martín Bruzzoni</p>
+        <div>
+            <a href="https://github.com/BruzzoniR"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/roberto-bruzzoni/"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:bruzzoni.r@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>      
+    </footer>
+    <script>
+        let textoOriginal = document.querySelector("textarea");
+        let textoTransformado = "";
+        let botonEncriptar = document.getElementById("botonEncriptar");
+        let botonDesencriptar = document.getElementById("botonDesencriptar");
+        let funcionDelBoton = true;
+        let espacioParaTexto = document.getElementById("textoConImagen");
+        let textoDevelado = document.getElementById("textoTransformado");
+        textoDevelado.style.display="none";
+        let botonCopiar = document.getElementById("botonCopiar");
+        botonCopiar.style.visibility="hidden";
+
+        
+        botonEncriptar.onclick = encriptarTexto;
+        botonDesencriptar.onclick = desencriptarTexto;
+        botonCopiar.onclick = copiarTexto;
+
+
+        function leerTexto(cadena){
+            for (i=0;i<cadena.length;i++){
+                if (cadena.charAt(i)!="a" && cadena.charAt(i)!="e" && cadena.charAt(i)!="i" && cadena.charAt(i)!="o" && cadena.charAt(i)!="u"){
+                    textoTransformado = textoTransformado + cadena.charAt(i);
+                } else {
+                    if (cadena.charAt(i)=="a"){
+                        if (funcionDelBoton){
+                            textoTransformado = textoTransformado + "ai";
+                        } else {
+                            if (cadena.charAt(i+1)=="i"){
+                                textoTransformado = textoTransformado + "a";
+                                i++;
+                            } else {
+                                textoTransformado = "SU TEXTO NO HA SIDO ECRIPTADO CON NUESTRO ENCRIPTADOR. INGRESE UN TEXTO VÁLIDO";
+                                break;
+                            }
+                            
+                        }
+                        
+                    } else {
+                        if (cadena.charAt(i)=="e"){
+                            if (funcionDelBoton){
+                                textoTransformado = textoTransformado + "enter";
+                            } else {
+                                if (cadena.charAt(i+1)=="n"){
+                                    textoTransformado = textoTransformado + "e";
+                                    i = i + 4;
+                                } else {
+                                    textoTransformado = "SU TEXTO NO HA SIDO ECRIPTADO CON NUESTRO ENCRIPTADOR. INGRESE UN TEXTO VÁLIDO";
+                                    break;
+                                }
+                            }
+
+                        } else {
+                            if (cadena.charAt(i)=="i"){
+                                if (funcionDelBoton){
+                                    textoTransformado = textoTransformado + "imes";
+                                } else {
+                                    if (cadena.charAt(i+1)=="m") {
+                                        textoTransformado = textoTransformado + "i";
+                                        i = i + 3;
+                                    } else {
+                                        textoTransformado = "SU TEXTO NO HA SIDO ECRIPTADO CON NUESTRO ENCRIPTADOR. INGRESE UN TEXTO VÁLIDO";
+                                        break;
+                                    }
+                                }
+
+                            } else {
+                                if (cadena.charAt(i)=="o"){
+                                    if (funcionDelBoton){
+                                        textoTransformado = textoTransformado + "ober";
+                                    } else {
+                                        if (cadena.charAt(i+1)=="b"){
+                                            textoTransformado = textoTransformado + "o";
+                                            i = i + 3;
+                                        } else {
+                                            textoTransformado = "SU TEXTO NO HA SIDO ECRIPTADO CON NUESTRO ENCRIPTADOR. INGRESE UN TEXTO VÁLIDO";
+                                            break;
+                                        }
+                                        
+                                    }
+
+                                } else {
+                                    if (cadena.charAt(i)=="u"){
+                                        if (funcionDelBoton){
+                                            textoTransformado = textoTransformado + "ufat";
+                                        } else {
+                                            if (cadena.charAt(i+1)=="f"){
+                                                textoTransformado = textoTransformado + "u";
+                                                i = i + 3;
+                                            } else {
+                                                textoTransformado = "SU TEXTO NO HA SIDO ECRIPTADO CON NUESTRO ENCRIPTADOR. INGRESE UN TEXTO VÁLIDO";
+                                                break;
+                                            }
+                                            
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }    
+        }
+
+
+        function encriptarTexto(evento){
+            textoTransformado = "";
+            funcionDelBoton = true;
+            leerTexto(textoOriginal.value);
+            textoDevelado.innerText = textoTransformado;
+            espacioParaTexto.style.display="none";
+            textoDevelado.style.display= "inline";
+            botonCopiar.style.visibility="visible";
+            
+        }
+
+        function desencriptarTexto(evento){
+            textoTransformado = "";
+            funcionDelBoton = false;
+            leerTexto(textoOriginal.value);
+            textoDevelado.innerText = textoTransformado;
+            espacioParaTexto.style.display="none";
+            textoDevelado.style.display= "inline";
+            botonCopiar.style.visibility="visible";
+        }
+
+        function copiarTexto(evento) {
+            navigator.clipboard.writeText(textoTransformado).then(() => {
+            /* clipboard successfully set */
+            }, () => {
+            /* clipboard write failed */
+            });
+        }
+
+
+    </script>
+    <script src="https://kit.fontawesome.com/460bdc1fbb.js" crossorigin="anonymous"></script>
+</body>
+</html>
