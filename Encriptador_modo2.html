@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width">
     <title>Encriptador de texto</title>
     <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style_modo2.css">
 </head>
 <body>
     <header>
         <h1><img src="./pics/Logo.svg" alt="Logo de Alura" id="logo"></h1>
-
-        <a href="./Encriptador_modo2.html" id="cambioDeModo">Modo 2</a>
-
+        
+        <a href="./Encriptador.html" id="cambioDeModo">Modo 1</a>
 
     </header>
     <main>
@@ -28,13 +27,8 @@
         </section>
 
         <section id="sectorTextoTrasformado">
-            <textarea id="textoTransformado"></textarea>
-            
-            <div id="textoConImagen">
-                <img src="./pics/Muñeco.svg" alt="Dibujo de alguien buscando" id="imagen">
-                <p id="textoMediano">Ningún mensaje fue encontrado</p>
-                <p id="textoChico">Ingresa el texto que quieres encriptar o desencriptar.</p>
-            </div>
+            <textarea id="textoTransformado">Ningún mensaje fue encontrado. Ingresa el texto que quieres encriptar o desencriptar.</textarea>
+    
 
             <input type="button" id="botonCopiar" value="Copiar" class="botones">
 
@@ -55,11 +49,9 @@
         let botonEncriptar = document.getElementById("botonEncriptar");
         let botonDesencriptar = document.getElementById("botonDesencriptar");
         let funcionDelBoton = true;
-        let espacioParaTexto = document.getElementById("textoConImagen");
-        let textoDevelado = document.getElementById("textoTransformado");
-        textoDevelado.style.display="none";
         let botonCopiar = document.getElementById("botonCopiar");
         botonCopiar.style.visibility="hidden";
+        let textoDevelado = document.getElementById("textoTransformado");
 
         
         botonEncriptar.onclick = encriptarTexto;
@@ -160,8 +152,6 @@
             funcionDelBoton = true;
             leerTexto(textoOriginal.value);
             textoDevelado.innerText = textoTransformado;
-            espacioParaTexto.style.display="none";
-            textoDevelado.style.display= "inline";
             botonCopiar.style.visibility="visible";
             
         }
@@ -171,8 +161,6 @@
             funcionDelBoton = false;
             leerTexto(textoOriginal.value);
             textoDevelado.innerText = textoTransformado;
-            espacioParaTexto.style.display="none";
-            textoDevelado.style.display= "inline";
             botonCopiar.style.visibility="visible";
         }
 

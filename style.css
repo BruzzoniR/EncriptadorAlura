@@ -12,6 +12,33 @@ body{
     bottom: 0%;
 }
 
+#cambioDeModo {
+    position: absolute;
+    left: 50%;
+    top: 2%;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 15px;
+    
+    background: #0A3871;
+    border: 0px;
+    border-radius: 24px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+
+#cambioDeModo:hover{
+    transform: scale(1.1);
+    transition-duration: 100ms;
+}
+
 #sectorTextoOriginal{
     margin: 10% 15% 5%;
     display: block;
