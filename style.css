@@ -296,11 +296,13 @@ footer a{
     #advertencia{
         position: relative;
         margin: 5% 0;
+        left: 0;
         
     }
 
     #sectorBotones{
         position: relative;
+        left: 0;
         width: 100%;
         
     }
